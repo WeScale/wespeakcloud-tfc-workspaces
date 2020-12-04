@@ -34,8 +34,7 @@ resource "tfe_oauth_client" "github_wescale" {
 resource "tfe_policy_set" "policies" {
   name = var.policies_repo_name
   organization = var.organization_id
-  global = false
-  workspace_external_ids = keys(local.github_basic_workspaces)
+  workspace_ids = keys(local.github_basic_workspaces)
 
   vcs_repo {
     identifier = "WeScale/${var.policies_repo_name}"
