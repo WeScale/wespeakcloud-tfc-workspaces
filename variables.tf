@@ -29,6 +29,13 @@ variable "github_basic_workspaces" {
   type = list(object({
     name = string
     identifier = string
+    variables = map(object({
+      value = string
+      description = string
+      category = string
+      hcl = bool
+      sensitive = bool
+    }))
   }))
   description = "List of basic Github workspaces"
 }
