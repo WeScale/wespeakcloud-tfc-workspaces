@@ -17,7 +17,7 @@ locals {
     for workspace in var.github_basic_workspaces:
     workspace.name => merge(workspace, {
       oauth_token_id = tfe_oauth_client.github_wescale.oauth_token_id
-      identifier = "WeScale/${workspace.identifier}"
+      identifier = workspace.identifier
       organization_id = var.organization_id
     })
   }
