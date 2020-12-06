@@ -34,7 +34,6 @@ variable "github_basic_workspaces" {
       description = string
       category = string
       hcl = bool
-      sensitive = bool
     }))
   }))
   description = "List of basic Github workspaces"

@@ -48,7 +48,7 @@ resource "tfe_policy_set" "policies" {
 
 module "basic_workspaces" {
   source  = "app.terraform.io/wescalefr/basic_workspace/tfe"
-  version = "~> 0.2.0"
+  version = "~> 0.3.0"
   
   for_each = local.github_basic_workspaces
 
