@@ -13,16 +13,17 @@ terraform {
 }
 
 locals {
+  //build map by adding oauth_token and organization_id in each item
   github_basic_workspaces = {
     for workspace in var.github_basic_workspaces:
     workspace.name => merge(workspace, {
       oauth_token_id = tfe_oauth_client.github_wescale.oauth_token_id
-      identifier = workspace.identifier
       organization_id = var.organization_id
     })
   }
 }
 
+//github VCS client
 resource "tfe_oauth_client" "github_wescale" {
   organization = var.organization_id
   api_url = "https://api.github.com"
@@ -31,6 +32,7 @@ resource "tfe_oauth_client" "github_wescale" {
   service_provider = "github"
 }
 
+//policy_set to use one every workspace
 resource "tfe_policy_set" "policies" {
   name = var.policies_repo_name
   organization = var.organization_id
@@ -46,6 +48,7 @@ resource "tfe_policy_set" "policies" {
   }
 }
 
+//workspaces built with a for_each loop
 module "basic_workspaces" {
   source  = "app.terraform.io/wescalefr/basic_workspace/tfe"
   version = "~> 0.3.0"
