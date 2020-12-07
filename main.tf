@@ -58,6 +58,7 @@ module "basic_workspaces" {
   name = each.value.name
   organization_id = each.value.organization_id
   vcs_repo_identifier = each.value.identifier
+  vcs_repo_branch = each.value.branch
   oauth_token_id = each.value.oauth_token_id
   variables = each.value.variables
 }
