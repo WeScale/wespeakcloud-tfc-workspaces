@@ -51,7 +51,7 @@ resource "tfe_policy_set" "policies" {
 //workspaces built with a for_each loop
 module "basic_workspaces" {
   source  = "app.terraform.io/wescalefr/basic_workspace/tfe"
-  version = "~> 0.3.0"
+  version = "~> 0.4.0"
   
   for_each = local.github_basic_workspaces
 
@@ -60,6 +60,7 @@ module "basic_workspaces" {
   vcs_repo_identifier = each.value.identifier
   vcs_repo_branch = each.value.branch
   oauth_token_id = each.value.oauth_token_id
+  auto_apply = each.value.auto_apply
   variables = each.value.variables
 }
 

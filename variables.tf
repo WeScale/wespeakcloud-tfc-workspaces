@@ -30,6 +30,7 @@ variable "github_basic_workspaces" {
     name = string
     identifier = string
     branch = string
+    auto_apply = bool
     variables = map(object({
       value = string
       description = string
